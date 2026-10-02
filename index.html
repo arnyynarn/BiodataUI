@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Biodata Portfolio Studio - Editor Portofolio Modern Berbasis Realtime dengan Gaya Bento Grid dan Glassmorphism Murni.">
+  <title>Portfolio Studio • Modern Biodata & Bento Portfolio</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body data-theme="light" data-accent="indigo">
+
+  <!-- Subtle Background Grid Pattern & Ambient Glowing Mesh -->
+  <div class="bg-mesh-canvas" aria-hidden="true"></div>
+  <div class="bg-grid-overlay" aria-hidden="true"></div>
+  <div class="ambient-glow orb-1" aria-hidden="true"></div>
+  <div class="ambient-glow orb-2" aria-hidden="true"></div>
+  <div class="ambient-glow orb-3" aria-hidden="true"></div>
+
+  <!-- Toast Notification Floating Container -->
+  <div id="toast-container" class="toast-container" role="region" aria-live="polite"></div>
+
+  <!-- ================= TOP APP CONTROL BAR ================= -->
+  <header class="app-control-bar glass-bar">
+    <div class="nav-left">
+      <div class="brand-badge">
+        <div class="brand-logo-glow">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+            <polyline points="2 17 12 22 22 17"></polyline>
+            <polyline points="2 12 12 17 22 12"></polyline>
+          </svg>
+        </div>
+        <div>
+          <div class="brand-title">PORTFOLIO<span class="brand-dot">.</span>STUDIO</div>
+          <div class="brand-subtitle">Realtime Bento & Creative Biodata Engine</div>
+        </div>
+      </div>
+
+      <div class="save-status-pill" id="save-status-pill" title="Status penyimpanan otomatis di peramban">
+        <span class="status-pulse-radar"></span>
+        <span id="save-status-text">Tersimpan otomatis di peramban</span>
+      </div>
+    </div>
+
+    <div class="nav-center">
+      <!-- Accent Palette Picker -->
+      <div class="accent-palette-picker" title="Ubah Aksen Warna Portofolio">
+        <span class="palette-label">Aksen:</span>
+        <button type="button" class="accent-dot active" data-color="indigo" style="background:#6366F1"
+          aria-label="Indigo"></button>
+        <button type="button" class="accent-dot" data-color="emerald" style="background:#10B981"
+          aria-label="Emerald"></button>
+        <button type="button" class="accent-dot" data-color="cyan" style="background:#06B6D4"
+          aria-label="Cyan"></button>
+        <button type="button" class="accent-dot" data-color="rose" style="background:#F43F5E"
+          aria-label="Rose"></button>
+        <button type="button" class="accent-dot" data-color="violet" style="background:#8B5CF6"
+          aria-label="Violet"></button>
+      </div>
+
+      <!-- Theme Switcher (Dark/Light) -->
+      <button type="button" class="btn-control-icon btn-theme-toggle" id="btn-theme-toggle"
+        title="Ganti Mode Terang / Gelap" aria-label="Toggle Theme">
+        <svg id="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg id="theme-icon-moon" class="hidden" width="18" height="18" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+    </div>
+
+    <div class="nav-right">
+      <!-- Toggle Split vs Fullscreen View -->
+      <button type="button" class="btn-control btn-view-mode" id="btn-toggle-view"
+        title="Alihkan Tampilan Penuh / Split Editor">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="9" y1="3" x2="9" y2="21"></line>
+        </svg>
+        <span id="toggle-view-text">Tampilan Penuh</span>
+      </button>
+
+      <!-- Export Standalone HTML (Zero Server) -->
+      <button type="button" class="btn-control btn-export-highlight" id="btn-export-html"
+        title="Unduh berkas portofolio HTML mandiri">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        <span>Unduh Web HTML</span>
+      </button>
+
+      <!-- Print CV / PDF -->
+      <button type="button" class="btn-control" id="btn-print-cv" title="Cetak atau Ekspor sebagai Resume PDF">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="6 9 6 2 18 2 18 9"></polyline>
+          <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+          <rect x="6" y="14" width="12" height="8"></rect>
+        </svg>
+        <span>Cetak CV</span>
+      </button>
+
+      <!-- Undo / Redo -->
+      <!-- <button type="button" class="btn-control-icon btn-undo" id="btn-undo" title="Urungkan (Undo) - Ctrl+Z" disabled>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 7v6h6"></path>
+          <path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"></path>
+        </svg>
+      </button>
+      <button type="button" class="btn-control-icon btn-redo" id="btn-redo" title="Ulangi (Redo) - Ctrl+Y" disabled>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 7v6h-6"></path>
+          <path d="M3 17a9 9 0 0 1 9-9 9 9 0 0 1 6 2.3l3 2.7"></path>
+        </svg>
+      </button> -->
+
+      <!-- Reset Data -->
+      <button type="button" class="btn-control-icon btn-reset-data" id="btn-reset-data"
+        title="Kembalikan ke Contoh Data Awal">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="1 4 1 10 7 10"></polyline>
+          <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ================= WORKSPACE CONTAINER ================= -->
+  <div class="studio-workspace" id="studio-workspace">
+
+    <!-- ================= LEFT PANE: STUDIO CONTENT EDITOR ================= -->
+    <aside class="editor-pane" id="editor-pane">
+      <div class="editor-inner">
+
+        <div class="editor-header-box">
+          <div class="editor-badge-tag">KONTROL REALTIME</div>
+          <h2 class="editor-headline">Studio Kustomisasi</h2>
+          <p class="editor-subline">Ubah teks, tautan, statistik, atau proyek. Pratinjau di samping kanan akan berubah
+            seketika.</p>
+        </div>
+
+        <!-- ACCORDION 1: PROFIL & AVATAR -->
+        <div class="accordion-item active" data-accordion="profile">
+          <button type="button" class="accordion-trigger">
+            <span class="acc-title">
+              <span class="acc-icon-wrap">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </span>
+              Identitas & Bio Utama
+            </span>
+            <span class="acc-arrow">▼</span>
+          </button>
+          <div class="accordion-content">
+
+            <!-- Photo Upload Area -->
+            <div class="form-group">
+              <label class="field-label">Foto Profil / Avatar Pribadi</label>
+              <div class="photo-drop-box" id="photo-drop-area">
+                <input type="file" id="photo-file-input" accept="image/*" class="visually-hidden">
+                <div class="photo-avatar-preview">
+                  <img id="editor-avatar-img" src="" alt="Avatar Profil" class="avatar-round-img">
+                </div>
+                <div class="photo-cta-col">
+                  <div class="photo-btn-row">
+                    <button type="button" class="btn-xs btn-accent-fill" id="btn-upload-avatar">Pilih Foto</button>
+                    <button type="button" class="btn-xs btn-ghost-subtle" id="btn-remove-avatar">Default</button>
+                  </div>
+                  <div class="photo-hint">JPG, PNG, atau WebP (Maksimal 2.5MB)</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="input-fullname" class="field-label">Nama Lengkap & Gelar</label>
+              <input type="text" id="input-fullname" class="form-input"
+                placeholder="Contoh: Raden Arya Wicaksana, S.Kom">
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="input-role" class="field-label">Gelar Profesi / Headline</label>
+                <input type="text" id="input-role" class="form-input"
+                  placeholder="Contoh: Senior Frontend Engineer & UI Designer">
+              </div>
+              <div class="form-group">
+                <label for="input-location" class="field-label">Domisili / Kota</label>
+                <input type="text" id="input-location" class="form-input" placeholder="Contoh: Bandung, Indonesia">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="input-status-badge" class="field-label">Status Ketersediaan (Badge Hijau)</label>
+              <input type="text" id="input-status-badge" class="form-input"
+                placeholder="Contoh: Terbuka untuk Kolaborasi & Proyek Baru">
+            </div>
+
+            <div class="form-group">
+              <label for="input-bio" class="field-label">Narasi Bio / Ringkasan Diri</label>
+              <textarea id="input-bio" class="form-input form-textarea" rows="3"
+                placeholder="Ceritakan latar belakang, fokus keahlian, filosofi kerja, dan visi Anda..."></textarea>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ACCORDION 2: STATISTIK BENTO -->
+        <div class="accordion-item" data-accordion="stats">
+          <button type="button" class="accordion-trigger">
+            <span class="acc-title">
+              <span class="acc-icon-wrap">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="18" y1="20" x2="18" y2="10"></line>
+                  <line x1="12" y1="20" x2="12" y2="4"></line>
+                  <line x1="6" y1="20" x2="6" y2="14"></line>
+                </svg>
+              </span>
+              Highlight Angka & Metrik Bento
+            </span>
+            <span class="acc-arrow">▼</span>
+          </button>
+          <div class="accordion-content">
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="input-stat-1-val" class="field-label">Nilai Metrik 1</label>
+                <input type="text" id="input-stat-1-val" class="form-input font-mono" placeholder="3.89">
+              </div>
+              <div class="form-group">
+                <label for="input-stat-1-lbl" class="field-label">Label Metrik 1</label>
+                <input type="text" id="input-stat-1-lbl" class="form-input" placeholder="IPK Kumulatif">
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="input-stat-2-val" class="field-label">Nilai Metrik 2</label>
+                <input type="text" id="input-stat-2-val" class="form-input font-mono" placeholder="20+">
+              </div>
+              <div class="form-group">
+                <label for="input-stat-2-lbl" class="field-label">Label Metrik 2</label>
+                <input type="text" id="input-stat-2-lbl" class="form-input" placeholder="Proyek Selesai">
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="input-stat-3-val" class="field-label">Nilai Metrik 3</label>
+                <input type="text" id="input-stat-3-val" class="form-input font-mono" placeholder="3+">
+              </div>
+              <div class="form-group">
+                <label for="input-stat-3-lbl" class="field-label">Label Metrik 3</label>
+                <input type="text" id="input-stat-3-lbl" class="form-input" placeholder="Tahun Pengalaman">
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="input-stat-4-val" class="field-label">Nilai Metrik 4</label>
+                <input type="text" id="input-stat-4-val" class="form-input font-mono" placeholder="100%">
+              </div>
+              <div class="form-group">
+                <label for="input-stat-4-lbl" class="field-label">Label Metrik 4</label>
+                <input type="text" id="input-stat-4-lbl" class="form-input" placeholder="Komitmen Kualitas">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ACCORDION 3: KEAHLIAN / TECH STACK -->
+        <div class="accordion-item" data-accordion="skills">
+          <button type="button" class="accordion-trigger">
+            <span class="acc-title">
+              <span class="acc-icon-wrap">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                  </polygon>
+                </svg>
+              </span>
+              Teknologi & Keahlian (Skills)
+            </span>
+            <span class="acc-arrow">▼</span>
+          </button>
+          <div class="accordion-content">
+            <label class="field-label">Ketik keahlian & tekan Enter</label>
+            <div class="skills-tag-editor" id="skills-tag-editor">
+              <div class="skills-tag-list" id="skills-tag-list"></div>
+              <input type="text" id="skill-input" class="skill-input-field" placeholder="Ketik keahlian & Enter...">
+            </div>
+
+            <div class="quick-skills-suggest">
+              <span class="suggest-label">Tambah instan:</span>
+              <button type="button" class="btn-chip" data-skill="React.js">+ React</button>
+              <button type="button" class="btn-chip" data-skill="TypeScript">+ TypeScript</button>
+              <button type="button" class="btn-chip" data-skill="UI/UX Figma">+ Figma</button>
+              <button type="button" class="btn-chip" data-skill="Node.js">+ Node.js</button>
+              <button type="button" class="btn-chip" data-skill="TailwindCSS">+ Tailwind</button>
+              <button type="button" class="btn-chip" data-skill="Next.js">+ Next.js</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ACCORDION 4: DAFTAR PROYEK -->
+        <div class="accordion-item" data-accordion="projects">
+          <button type="button" class="accordion-trigger">
+            <span class="acc-title">
+              <span class="acc-icon-wrap">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                </svg>
+              </span>
+              Koleksi Proyek Unggulan
+            </span>
+            <span class="acc-arrow">▼</span>
+          </button>
+          <div class="accordion-content">
+            <div class="projects-editor-list" id="projects-editor-list">
+              <!-- Dynamically populated project items in editor -->
+            </div>
+            <button type="button" class="btn-add-action" id="btn-add-project">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+              <span>Tambah Kartu Proyek Baru</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- ACCORDION 5: RIWAYAT & PENDIDIKAN -->
+        <div class="accordion-item" data-accordion="experience">
+          <button type="button" class="accordion-trigger">
+            <span class="acc-title">
+              <span class="acc-icon-wrap">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+              </span>
+              Riwayat Pengalaman & Edukasi
+            </span>
+            <span class="acc-arrow">▼</span>
+          </button>
+          <div class="accordion-content">
+            <div class="timeline-editor-list" id="timeline-editor-list">
+              <!-- Dynamically populated timeline items -->
+            </div>
+            <button type="button" class="btn-add-action" id="btn-add-timeline">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+              <span>Tambah Riwayat Pengalaman</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- ACCORDION 6: KONTAK & MEDIA SOSIAL -->
+        <div class="accordion-item" data-accordion="contact">
+          <button type="button" class="accordion-trigger">
+            <span class="acc-title">
+              <span class="acc-icon-wrap">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </span>
+              Kanal Komunikasi & Jejaring
+            </span>
+            <span class="acc-arrow">▼</span>
+          </button>
+          <div class="accordion-content">
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="input-email" class="field-label">Alamat Email Resmi</label>
+                <input type="email" id="input-email" class="form-input" placeholder="nama@email.com">
+              </div>
+              <div class="form-group">
+                <label for="input-whatsapp" class="field-label">Nomor WhatsApp (+62)</label>
+                <input type="text" id="input-whatsapp" class="form-input font-mono" placeholder="+62 812-3456-7890">
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="input-github" class="field-label">GitHub URL</label>
+                <input type="url" id="input-github" class="form-input" placeholder="https://github.com/username">
+              </div>
+              <div class="form-group">
+                <label for="input-linkedin" class="field-label">LinkedIn URL</label>
+                <input type="url" id="input-linkedin" class="form-input" placeholder="https://linkedin.com/in/username">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="input-website" class="field-label">Website / Blog Pribadi (Opsional)</label>
+              <input type="url" id="input-website" class="form-input" placeholder="https://domainanda.com">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </aside>
+
+    <!-- ================= RIGHT PANE: LIVE BENTO PORTFOLIO CANVAS ================= -->
+    <main class="preview-pane" id="preview-pane">
+      <div class="portfolio-canvas" id="portfolio-canvas">
+
+        <!-- ================= 1. HERO BENTO CARD ================= -->
+        <section class="p-bento-hero" id="p-hero">
+
+          <div class="hero-ambient-spot"></div>
+
+          <!-- Top Status Bar -->
+          <div class="hero-top-row">
+            <div class="status-radar-badge" id="p-display-status-wrap">
+              <span class="radar-dot"></span>
+              <span class="status-text" id="p-display-status">Terbuka untuk Kerja & Kolaborasi</span>
+            </div>
+
+            <div class="location-chip">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <span id="p-display-location">Bandung, Indonesia</span>
+            </div>
+          </div>
+
+          <!-- Hero Main Body -->
+          <div class="hero-content-layout">
+
+            <!-- Left: Floating Avatar with Multi-layer Glow Ring -->
+            <div class="hero-avatar-zone">
+              <div class="avatar-halo-conic"></div>
+              <div class="avatar-glass-frame">
+                <img id="p-display-avatar" src="" alt="Avatar Profil" class="avatar-main-img">
+              </div>
+              <div class="avatar-online-badge" title="Tersedia Sekarang">
+                <span class="online-pulse-circle"></span>
+              </div>
+            </div>
+
+            <!-- Right: High Impact Editorial Bio -->
+            <div class="hero-text-zone">
+              <div class="hero-hello-pill">
+                <span class="hello-sparkle">✦</span>
+                <span>Portofolio & Biodata Interaktif</span>
+              </div>
+
+              <h1 class="hero-name-gradient" id="p-display-name">Raden Arya Wicaksana</h1>
+
+              <div class="hero-role-display">
+                <span class="role-bracket">&lt;</span>
+                <span id="p-display-role" class="typewriter-target">Full-Stack Engineer & Creative UI
+                  Designer</span><span class="typing-cursor" id="typing-cursor">|</span>
+                <span class="role-bracket">/&gt;</span>
+              </div>
+
+              <p class="hero-bio-narrative" id="p-display-bio">
+                Berfokus pada pengembangan produk digital modern berkinerja tinggi, berestetika premium, dan ramah
+                pengguna. Gemar memadukan seni desain antarmuka interaktif dengan arsitektur kode bersih dan skalabel.
+              </p>
+
+              <!-- CTA Buttons -->
+              <div class="hero-actions-row">
+                <a href="#p-contact" class="btn-glow-cta" id="p-cta-contact">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                    </path>
+                  </svg>
+                  <span>Mulai Diskusi</span>
+                </a>
+
+                <a href="#p-projects" class="btn-glass-subtle">
+                  <span>Lihat Proyek</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </a>
+              </div>
+
+              <!-- Social Pills -->
+              <div class="hero-social-list" id="p-display-socials">
+                <!-- Dynamically generated social pills -->
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+
+        <!-- ================= 2. BENTO HIGHLIGHTS GRID ================= -->
+        <section class="p-bento-grid">
+
+          <!-- Bento Card 1: Primary Metric -->
+          <div class="bento-card bento-metric-1">
+            <div class="bento-card-bg-glow"></div>
+            <div class="bento-header-micro">
+              <span class="bento-tag-micro">AKADEMIK</span>
+              <span class="bento-sparkle-icon">★</span>
+            </div>
+            <div class="bento-metric-number font-mono" id="p-display-stat-1-val">3.89</div>
+            <div class="bento-metric-label" id="p-display-stat-1-lbl">IPK Kumulatif</div>
+            <div class="bento-metric-sub">Predikat Pujian (Cum Laude)</div>
+          </div>
+
+          <!-- Bento Card 2: Completed Projects -->
+          <div class="bento-card bento-metric-2">
+            <div class="bento-card-bg-glow"></div>
+            <div class="bento-header-micro">
+              <span class="bento-tag-micro">PRODUKSI</span>
+              <span class="bento-sparkle-icon">⚡</span>
+            </div>
+            <div class="bento-metric-number font-mono" id="p-display-stat-2-val">20+</div>
+            <div class="bento-metric-label" id="p-display-stat-2-lbl">Proyek Selesai</div>
+            <div class="bento-metric-sub">Web Apps, UI/UX & API</div>
+          </div>
+
+          <!-- Bento Card 3: Experience Years -->
+          <div class="bento-card bento-metric-3">
+            <div class="bento-card-bg-glow"></div>
+            <div class="bento-header-micro">
+              <span class="bento-tag-micro">PENGALAMAN</span>
+              <span class="bento-sparkle-icon">💼</span>
+            </div>
+            <div class="bento-metric-number font-mono" id="p-display-stat-3-val">3+</div>
+            <div class="bento-metric-label" id="p-display-stat-3-lbl">Tahun Pengalaman</div>
+            <div class="bento-metric-sub">Magang, Kampus & Freelance</div>
+          </div>
+
+          <!-- Bento Card 4: Quality & Dedication -->
+          <div class="bento-card bento-metric-4">
+            <div class="bento-card-bg-glow"></div>
+            <div class="bento-header-micro">
+              <span class="bento-tag-micro">DEDIKASI</span>
+              <span class="bento-sparkle-icon">🎯</span>
+            </div>
+            <div class="bento-metric-number font-mono" id="p-display-stat-4-val">100%</div>
+            <div class="bento-metric-label" id="p-display-stat-4-lbl">Komitmen Kualitas</div>
+            <div class="bento-metric-sub">Clean Code & User Centric</div>
+          </div>
+
+        </section>
+
+        <!-- ================= 3. SKILLS & CAPABILITIES SECTION ================= -->
+        <section class="p-section" id="p-skills">
+          <div class="section-title-wrap">
+            <div class="section-kicker">KOMPETENSI TEKNOLOGI</div>
+            <h2 class="section-title-modern">Stack Keahlian & Perkakas Unggulan</h2>
+            <p class="section-lead">Instrumen dan bahasa pemrograman yang digunakan untuk merealisasikan solusi digital
+              modern.</p>
+          </div>
+
+          <div class="skills-glass-rack">
+            <div class="skills-cloud-modern" id="p-display-skills">
+              <!-- Dynamically populated interactive skill badges -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= 4. FEATURED PROJECTS SHOWCASE ================= -->
+        <section class="p-section" id="p-projects">
+          <div class="section-title-wrap">
+            <div class="section-kicker">KARYA TERPILIH</div>
+            <h2 class="section-title-modern">Portofolio & Proyek Unggulan</h2>
+            <p class="section-lead">Inovasi perangkat lunak nyata dengan perhatian tajam pada detail antarmuka dan
+              arsitektur kode.</p>
+          </div>
+
+          <div class="projects-modern-grid" id="p-display-projects">
+            <!-- Dynamically populated modern project cards -->
+          </div>
+        </section>
+
+        <!-- ================= 5. TIMELINE & CAREER PATH ================= -->
+        <section class="p-section" id="p-experience">
+          <div class="section-title-wrap">
+            <div class="section-kicker">REKAM JEJAK</div>
+            <h2 class="section-title-modern">Riwayat Pengalaman & Pendidikan</h2>
+            <p class="section-lead">Perjalanan dedikasi profesional dalam studi akademis dan kontribusi proyek industri.
+            </p>
+          </div>
+
+          <div class="timeline-modern-flow" id="p-display-timeline">
+            <!-- Dynamically populated modern timeline nodes -->
+          </div>
+        </section>
+
+        <!-- ================= 6. BENTO CONTACT CARD ================= -->
+        <section class="p-section" id="p-contact">
+          <div class="bento-contact-banner">
+            <div class="contact-aura-ambient"></div>
+
+            <div class="contact-center-content">
+              <div class="contact-mini-badge">MARI TERHUBUNG</div>
+              <h2 class="contact-title-giant">Siap Mewujudkan Proyek Hebat Bersama?</h2>
+              <p class="contact-lead-text">
+                Saya selalu antusias menyambut peluang magang, tawaran pekerjaan profesional, kolaborasi open source,
+                atau sekadar berdiskusi seputar teknologi masa depan.
+              </p>
+
+              <!-- Interactive Contact Action Chips -->
+              <div class="contact-cta-rack">
+                <a href="mailto:" class="contact-btn-highlight" id="p-display-contact-email">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                  </svg>
+                  <span id="p-text-email">arya.wicaksana@example.com</span>
+                </a>
+
+                <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" class="contact-btn-wa"
+                  id="p-display-contact-wa">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                    </path>
+                  </svg>
+                  <span id="p-text-wa">+62 812-9876-5432</span>
+                </a>
+              </div>
+
+              <!-- Footer Micro Note -->
+              <div class="contact-footer-note">
+                Didesain dengan presisi visual modern • Dijalankan 100% Client-Side Tanpa Server Python
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Pure Vanilla JavaScript -->
+  <script src="script.js"></script>
+</body>
+
+</html>
