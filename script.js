@@ -16,19 +16,19 @@
   const INITIAL_PORTFOLIO_DATA = {
     theme: 'light',
     accent: 'indigo',
-    fullname: 'Raden Arya Wicaksana',
-    role: 'Full-Stack Engineer & Creative UI Designer',
-    location: 'Bandung, Indonesia',
+    fullname: 'Arni Yuniarni',
+    role: 'Mahasiswa Teknik Informatika',
+    location: 'Bekasi, Indonesia',
     statusBadge: 'Terbuka untuk Kerja & Kolaborasi',
-    bio: 'Berfokus pada pengembangan produk digital modern berkinerja tinggi, berestetika premium, dan ramah pengguna. Gemar memadukan seni desain antarmuka interaktif dengan arsitektur kode bersih dan skalabel.',
+    bio: 'Mahasiswa Teknik Informatika yang antusias di bidang Web Development dan UI/UX Design. Berdedikasi untuk merancang antarmuka aplikasi yang estetis, responsif, dan memberikan pengalaman pengguna yang optimal.',
     photo: DEFAULT_AVATAR_SVG,
 
     // Bento Metrics
-    stat1Val: '3.89',
+    stat1Val: '3.86',
     stat1Lbl: 'IPK Kumulatif',
-    stat2Val: '20+',
+    stat2Val: '3+',
     stat2Lbl: 'Proyek Selesai',
-    stat3Val: '3+',
+    stat3Val: '6+',
     stat3Lbl: 'Tahun Pengalaman',
     stat4Val: '100%',
     stat4Lbl: 'Komitmen Kualitas',
@@ -56,7 +56,7 @@
         description: 'Platform manajemen pembelajaran interaktif terintegrasi dengan modul kuis real-time, analitik nilai otomatis, dan antarmuka gamifikasi.',
         tags: ['React.js', 'Node.js', 'PostgreSQL', 'TailwindCSS'],
         demoUrl: 'https://example.com/edupulse',
-        githubUrl: 'https://github.com/aryawicaksana/edupulse',
+        githubUrl: 'https://github.com/arniyuniarni/edupulse',
         gradient: 'linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%)'
       },
       {
@@ -66,7 +66,7 @@
         description: 'Dashboard finansial berbasis glassmorphism untuk memantau arus kas, visualisasi grafik pengeluaran bulanan, dan estimasi budget otomatis.',
         tags: ['TypeScript', 'Chart.js', 'Vanilla CSS', 'REST API'],
         demoUrl: 'https://example.com/fintrack',
-        githubUrl: 'https://github.com/aryawicaksana/fintrack',
+        githubUrl: 'https://github.com/arniyuniarni/fintrack',
         gradient: 'linear-gradient(135deg, #0284C7 0%, #0D9488 100%)'
       },
       {
@@ -76,7 +76,7 @@
         description: 'Kumpulan komponen UI ramah aksesibilitas dengan dukungan micro-animations, mode gelap otomatis, dan dokumentasi interaktif lengkap.',
         tags: ['Figma', 'CSS Architecture', 'Accessibility', 'Tokens'],
         demoUrl: 'https://example.com/auraui',
-        githubUrl: 'https://github.com/aryawicaksana/auraui',
+        githubUrl: 'https://github.com/arniyuniarni/auraui',
         gradient: 'linear-gradient(135deg, #E11D48 0%, #F43F5E 100%)'
       }
     ],
@@ -85,33 +85,33 @@
     timeline: [
       {
         id: 1,
-        role: 'Lead Frontend Developer (Magang)',
-        institution: 'PT Nusantara Digital Inovasi',
-        period: '2024 - Sekarang',
-        description: 'Memimpin refactoring antarmuka web portal klien, meningkatkan skor Google Lighthouse hingga 98/100, dan menerapkan standarisasi komponen.'
+        role: 'Operator Produksi',
+        institution: 'PT Denso Indonesia',
+        period: '2021 - 2023',
+        description: 'Melakukan perakitan komponen otomotif dengan menjaga kualitas dan standar perusahaan.'
       },
       {
         id: 2,
-        role: 'Kepala Divisi Riset & Teknologi',
-        institution: 'Himpunan Mahasiswa Informatika',
-        period: '2023 - 2024',
-        description: 'Mengorganisir 4 workshop teknologi web dan melatih lebih dari 120 mahasiswa dalam pengembangan frontend modern.'
+        role: 'Operator Produksi',
+        institution: 'PT Katolec Indonesia',
+        period: '2024 - Sekarang',
+        description: 'Melakukan perakitan komponen elektronik dengan menjaga kualitas dan standar perusahaan.'
       },
       {
         id: 3,
         role: 'S1 Teknik Informatika',
-        institution: 'Universitas Nusantara Teknologi',
-        period: '2022 - Sekarang',
-        description: 'Fokus pada Rekayasa Perangkat Lunak, Interaksi Manusia & Komputer (HCI), dan Algoritma. IPK berjalan 3.89/4.00.'
+        institution: 'Universitas Pelita Bangsa',
+        period: '2024 - Sekarang',
+        description: 'Fokus pada Kecerdasan Buatan, Machine Learning, dan Algoritma. IPK berjalan 3.86/4.00.'
       }
     ],
 
     // Contact
-    email: 'arya.wicaksana@example.com',
-    whatsapp: '+6281298765432',
-    github: 'https://github.com/aryawicaksana',
-    linkedin: 'https://linkedin.com/in/aryawicaksana',
-    website: 'https://aryawicaksana.dev'
+    email: 'arniyuniarnie442@gmail.com',
+    whatsapp: '+6285679722433',
+    github: 'https://github.com/arnyynarn',
+    linkedin: 'https://www.linkedin.com/in/arni-yuniarni-0ba845198',
+    website: 'https://arniyuniarni.github.io/'
   };
 
   // State
@@ -133,6 +133,10 @@
   const accentDots = document.querySelectorAll('.accent-dot');
   const saveStatusPill = document.getElementById('save-status-pill');
   const saveStatusText = document.getElementById('save-status-text');
+  const appControlBar = document.querySelector('.app-control-bar');
+  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+  const mobileNavPanel = document.getElementById('mobile-nav-panel');
+  const mobileViewText = document.getElementById('mobile-view-text');
 
   const btnExportHtml = document.getElementById('btn-export-html');
   const btnPrintCv = document.getElementById('btn-print-cv');
@@ -824,12 +828,54 @@
   // Theme Toggle Event
   btnThemeToggle.addEventListener('click', toggleThemeMode);
 
+  function syncMobileViewLabel() {
+    const isFull = workspace.classList.contains('full-view');
+    if (toggleViewText) toggleViewText.textContent = isFull ? 'Kembali ke Editor' : 'Tampilan Penuh';
+    if (mobileViewText) mobileViewText.textContent = isFull ? 'Kembali ke Editor' : 'Tampilan Penuh';
+  }
+
   // Toggle View Mode (Split Studio vs Fullscreen Portfolio)
   btnToggleView.addEventListener('click', () => {
     workspace.classList.toggle('full-view');
+    syncMobileViewLabel();
     const isFull = workspace.classList.contains('full-view');
-    toggleViewText.textContent = isFull ? 'Kembali ke Editor' : 'Tampilan Penuh';
     showToast(isFull ? 'Tampilan Penuh Aktif' : 'Mode Editor Aktif', isFull ? 'Portofolio ditampilkan dalam ukuran layar penuh.' : 'Panel editor dibuka kembali.', '👀');
+  });
+
+  function toggleMobileNav() {
+    if (!appControlBar || !mobileMenuToggle || !mobileNavPanel) return;
+    const isOpen = appControlBar.classList.toggle('mobile-menu-open');
+    mobileMenuToggle.setAttribute('aria-expanded', String(isOpen));
+    mobileNavPanel.setAttribute('aria-hidden', String(!isOpen));
+  }
+
+  if (mobileMenuToggle) {
+    mobileMenuToggle.addEventListener('click', toggleMobileNav);
+  }
+
+  if (mobileNavPanel) {
+    mobileNavPanel.addEventListener('click', (event) => {
+      const target = event.target.closest('[data-mobile-action]');
+      if (!target) return;
+
+      const action = target.dataset.mobileAction;
+      if (action === 'toggle-view') btnToggleView.click();
+      if (action === 'export-html') btnExportHtml.click();
+      if (action === 'print-cv') btnPrintCv.click();
+      if (action === 'reset-data') btnResetData.click();
+
+      toggleMobileNav();
+    });
+  }
+
+  document.addEventListener('click', (event) => {
+    if (!appControlBar || !mobileMenuToggle || !mobileNavPanel) return;
+    const clickedInside = appControlBar.contains(event.target);
+    if (!clickedInside && appControlBar.classList.contains('mobile-menu-open')) {
+      appControlBar.classList.remove('mobile-menu-open');
+      mobileMenuToggle.setAttribute('aria-expanded', 'false');
+      mobileNavPanel.setAttribute('aria-hidden', 'true');
+    }
   });
 
   // Print CV

@@ -400,6 +400,65 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
+  position: relative;
+}
+
+.mobile-menu-toggle {
+  display: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 11px;
+  border: var(--glass-border-subtle);
+  background: var(--glass-bg-elevated);
+  padding: 8px 7px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mobile-menu-toggle span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  border-radius: 99px;
+  background: var(--text-main);
+  transition: transform var(--transition-fast), opacity var(--transition-fast);
+}
+
+.mobile-menu-toggle[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.mobile-menu-toggle[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-menu-toggle[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+.mobile-nav-panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 220px;
+  padding: 10px;
+  border: var(--glass-border-subtle);
+  background: var(--glass-bg-elevated);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-radius: 16px;
+  box-shadow: var(--shadow-bento);
+  z-index: 110;
+}
+
+.app-control-bar.mobile-menu-open .mobile-nav-panel {
+  display: flex;
 }
 
 .btn-control {
@@ -1845,7 +1904,7 @@ body[data-theme="dark"] .project-footer-links {
     font-size: 14.5px;
   }
 
-  /* --- Navbar Mobile: wrap items into rows --- */
+  /* --- Navbar Mobile: convert to hamburger menu --- */
   .app-control-bar {
     flex-wrap: wrap;
     padding: 10px 14px;
@@ -1872,6 +1931,16 @@ body[data-theme="dark"] .project-footer-links {
 
   .nav-right {
     gap: 6px;
+    margin-left: auto;
+  }
+
+  .mobile-menu-toggle {
+    display: flex;
+  }
+
+  .nav-right > .btn-control,
+  .nav-right > .btn-control-icon {
+    display: none;
   }
 
   .palette-label {
@@ -1880,14 +1949,6 @@ body[data-theme="dark"] .project-footer-links {
 
   .accent-palette-picker {
     padding: 4px 10px;
-  }
-
-  .nav-right .btn-control span {
-    display: none;
-  }
-
-  .nav-right .btn-control {
-    padding: 8px 10px;
   }
 
   /* --- Editor Pane Mobile --- */

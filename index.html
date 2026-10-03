@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
     content="Biodata Portfolio Studio - Editor Portofolio Modern Berbasis Realtime dengan Gaya Bento Grid dan Glassmorphism Murni.">
-  <title>Portfolio Studio • Modern Biodata & Bento Portfolio</title>
+  <title>Portfolio Studio • Modern Portfolio</title>
 
   <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono & Outfit -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,7 +44,7 @@
         </div>
         <div>
           <div class="brand-title">PORTFOLIO<span class="brand-dot">.</span>STUDIO</div>
-          <div class="brand-subtitle">Realtime Bento & Creative Biodata Engine</div>
+          <div class="brand-subtitle">Realtime & Creative Biodata Engine</div>
         </div>
       </div>
 
@@ -141,6 +141,50 @@
       <!-- Reset Data -->
       <button type="button" class="btn-control-icon btn-reset-data" id="btn-reset-data"
         title="Kembalikan ke Contoh Data Awal">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="1 4 1 10 7 10"></polyline>
+          <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+        </svg>
+      </button>
+
+      <button type="button" class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Buka menu navigasi"
+        aria-expanded="false" title="Menu navigasi">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <div class="mobile-nav-panel" id="mobile-nav-panel" aria-hidden="true">
+      <button type="button" class="btn-control btn-view-mode" data-mobile-action="toggle-view">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="9" y1="3" x2="9" y2="21"></line>
+        </svg>
+        <span id="mobile-view-text">Tampilan Penuh</span>
+      </button>
+
+      <button type="button" class="btn-control btn-export-highlight" data-mobile-action="export-html">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        <span>Unduh Web HTML</span>
+      </button>
+
+      <button type="button" class="btn-control" data-mobile-action="print-cv">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="6 9 6 2 18 2 18 9"></polyline>
+          <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+          <rect x="6" y="14" width="12" height="8"></rect>
+        </svg>
+        <span>Cetak CV</span>
+      </button>
+
+      <button type="button" class="btn-control-icon btn-reset-data" data-mobile-action="reset-data"
+        title="Kembalikan ke Contoh Data Awal" aria-label="Reset data portofolio">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
           stroke-linecap="round" stroke-linejoin="round">
           <polyline points="1 4 1 10 7 10"></polyline>
@@ -451,7 +495,7 @@
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                 <circle cx="12" cy="10" r="3"></circle>
               </svg>
-              <span id="p-display-location">Bandung, Indonesia</span>
+              <span id="p-display-location">Bekasi, Indonesia</span>
             </div>
           </div>
 
@@ -476,18 +520,19 @@
                 <span>Portofolio & Biodata Interaktif</span>
               </div>
 
-              <h1 class="hero-name-gradient" id="p-display-name">Raden Arya Wicaksana</h1>
+              <h1 class="hero-name-gradient" id="p-display-name">Arni Yuniarni</h1>
 
               <div class="hero-role-display">
                 <span class="role-bracket">&lt;</span>
-                <span id="p-display-role" class="typewriter-target">Full-Stack Engineer & Creative UI
-                  Designer</span><span class="typing-cursor" id="typing-cursor">|</span>
+                <span id="p-display-role" class="typewriter-target">Mahasiswa Teknik Informatika</span><span
+                  class="typing-cursor" id="typing-cursor">|</span>
                 <span class="role-bracket">/&gt;</span>
               </div>
 
               <p class="hero-bio-narrative" id="p-display-bio">
-                Berfokus pada pengembangan produk digital modern berkinerja tinggi, berestetika premium, dan ramah
-                pengguna. Gemar memadukan seni desain antarmuka interaktif dengan arsitektur kode bersih dan skalabel.
+                Mahasiswa Teknik Informatika yang antusias di bidang Web Development dan UI/UX Design.
+                Berdedikasi untuk merancang antarmuka aplikasi yang estetis, responsif, dan memberikan pengalaman
+                pengguna yang optimal.
               </p>
 
               <!-- CTA Buttons -->
@@ -530,7 +575,7 @@
               <span class="bento-tag-micro">AKADEMIK</span>
               <span class="bento-sparkle-icon">★</span>
             </div>
-            <div class="bento-metric-number font-mono" id="p-display-stat-1-val">3.89</div>
+            <div class="bento-metric-number font-mono" id="p-display-stat-1-val">3.86</div>
             <div class="bento-metric-label" id="p-display-stat-1-lbl">IPK Kumulatif</div>
             <div class="bento-metric-sub">Predikat Pujian (Cum Laude)</div>
           </div>
@@ -637,7 +682,7 @@
                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                     <polyline points="22,6 12,13 2,6"></polyline>
                   </svg>
-                  <span id="p-text-email">arya.wicaksana@example.com</span>
+                  <span id="p-text-email">arniyuniarnie442@gmail.com</span>
                 </a>
 
                 <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" class="contact-btn-wa"
@@ -647,13 +692,14 @@
                       d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
                     </path>
                   </svg>
-                  <span id="p-text-wa">+62 812-9876-5432</span>
+                  <span id="p-text-wa">+62 856-7972-2433</span>
                 </a>
               </div>
 
               <!-- Footer Micro Note -->
               <div class="contact-footer-note">
-                Didesain dengan presisi visual modern • Dijalankan 100% Client-Side Tanpa Server Python
+                © 2026 [Arni Yuniarni] • All rights reserved • Dibuat dengan 💻 dan ☕ sebagai mahasiswa Teknik
+                Informatika.
               </div>
             </div>
 
